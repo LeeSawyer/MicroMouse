@@ -1,0 +1,285 @@
+
+Encoder.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000001fc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000188  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000002  00800100  00800100  000001fc  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000001fc  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000022c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000038  00000000  00000000  0000026c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000073b  00000000  00000000  000002a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000064a  00000000  00000000  000009df  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000002f5  00000000  00000000  00001029  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000007c  00000000  00000000  00001320  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000408  00000000  00000000  0000139c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000092  00000000  00000000  000017a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000028  00000000  00000000  00001836  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 83 00 	jmp	0x106	; 0x106 <__vector_3>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 9a 00 	jmp	0x134	; 0x134 <__vector_5>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a2 30       	cpi	r26, 0x02	; 2
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 b1 00 	call	0x162	; 0x162 <main>
+  88:	0c 94 c2 00 	jmp	0x184	; 0x184 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <_Z22RegisterInitializationv>:
+void RegisterInitialization(void)
+{
+		
+	////////////////////////////////////////////GPIO setup
+	//also 0x10 = 0b00010000 = (1 << DDB4) = (1 << 4) = _BV(4) = 16
+	DDRC |= 0b00011000; //port C3 front IRLED and port C4 diagonal IRLED
+  90:	87 b1       	in	r24, 0x07	; 7
+  92:	88 61       	ori	r24, 0x18	; 24
+  94:	87 b9       	out	0x07, r24	; 7
+	DDRD |= 0b00000011; //port D0 RX LED and D1 TX LED
+  96:	8a b1       	in	r24, 0x0a	; 10
+  98:	83 60       	ori	r24, 0x03	; 3
+  9a:	8a b9       	out	0x0a, r24	; 10
+	DDRC &= ~0b00101000;//configure portC as input button setup
+  9c:	87 b1       	in	r24, 0x07	; 7
+  9e:	87 7d       	andi	r24, 0xD7	; 215
+  a0:	87 b9       	out	0x07, r24	; 7
+	DDRD &= ~0b00000100;//configure portD as input button setup
+  a2:	52 98       	cbi	0x0a, 2	; 10
+	DDRD |= 0b01100000;//Data Direction, timer/counter 0 for PWM, I don't think this is needed.
+  a4:	8a b1       	in	r24, 0x0a	; 10
+  a6:	80 66       	ori	r24, 0x60	; 96
+  a8:	8a b9       	out	0x0a, r24	; 10
+	DDRB |= 0b0000110;//Data Direction, timer/counter 1 for PWM, I don't think this is needed.
+  aa:	84 b1       	in	r24, 0x04	; 4
+  ac:	86 60       	ori	r24, 0x06	; 6
+  ae:	84 b9       	out	0x04, r24	; 4
+	PORTB = (1<<PORTB0);	// Set the pull-up on PB0. our PCINT interrupt
+  b0:	21 e0       	ldi	r18, 0x01	; 1
+  b2:	25 b9       	out	0x05, r18	; 5
+	PORTD = (1<<PORTD7);	// Set the pull-up on PB0. our PCINT interrupt
+  b4:	30 e8       	ldi	r19, 0x80	; 128
+  b6:	3b b9       	out	0x0b, r19	; 11
+
+	///////////////////////////////////////////__This is for the timer/counter 0, forward motor
+	//also 0x60 = 0b01100000 = (1 << DDRD6) |(1 << DDD4) = (1 << 7) | (1 << 6) = _BV(7) | _BV(6) = 96
+	TCCR0A = (1 << COM0A1) | (1 << COM0B1) | (1 << WGM01) | (1 << WGM00);// TTTTimer/CCCCounter CCCControl RRRRegister AAAA:
+  b8:	83 ea       	ldi	r24, 0xA3	; 163
+  ba:	84 bd       	out	0x24, r24	; 36
+	// WWWWaveform GGGGeneration MMMMode: WGM02=0, WGM01=1, WGM00=1,
+	//Timer/Counter Mode of Operation: Fast PWM
+	//TOP: 0xFF
+	//Update of OCR0x at: BOTTOM
+	//TOV Flag Set on: MAX,0xFF
+	TCCR0B = (1 << CS02) | (1 << CS00); // TTTTimer/CCCCounter CCCControl RRRRegister BBBB
+  bc:	95 e0       	ldi	r25, 0x05	; 5
+  be:	95 bd       	out	0x25, r25	; 37
+	//Clock Select 0
+	//CA02+1, CS01=0, CS00=1: clkI/O/1024 (From prescaler)... /1024 is the fastest timer trigger setting
+	
+    ///////////////////////////////////////////__This is for the timer/counter 1
+	//also 0x04 = 0b0000110 = (1 << DDRB6) = (1 << 7) = _BV(7) = 64
+	TCCR1A = (1 << COM1A1) | (1 << COM1B1) | (1 << WGM10);// TTTTimer/CCCCounter CCCControl RRRRegister AAAA:
+  c0:	81 ea       	ldi	r24, 0xA1	; 161
+  c2:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
+	// WWWWaveform GGGGeneration MMMMode: WGM02=0, WGM01=1, WGM00=1,
+	//Timer/Counter Mode of Operation: Fast PWM
+	//TOP: 0xFF
+	//Update of OCR0x at: BOTTOM
+	//TOV Flag Set on: MAX
+	TCCR1B = (1 << CS12) | (1 << CS10) | (1 << WGM12); // TTTTimer/CCCCounter CCCControl RRRRegister BBBB
+  c6:	8d e0       	ldi	r24, 0x0D	; 13
+  c8:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7e0081>
+	//Clock Select 0
+	//CA02+1, CS01=0, CS00=1: clkI/O/1024 (From prescaler)... /1024 is the fastest timer trigger setting
+	
+	//////////////////////////////// timer/counter 2 setup
+	TCCR2B |= (1 << CS20)|(1 << CS21)|(1 << CS22);		// set up timer with prescaler = 1024
+  cc:	e1 eb       	ldi	r30, 0xB1	; 177
+  ce:	f0 e0       	ldi	r31, 0x00	; 0
+  d0:	80 81       	ld	r24, Z
+  d2:	87 60       	ori	r24, 0x07	; 7
+  d4:	80 83       	st	Z, r24
+	TCNT2 = 0; 					// initialize counter
+  d6:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+
+	/////////////////////////////////USART config
+	UBRR0H = (BRC >> 8); //sets the UART BAUD rate shifted over 8 bits , upper 8 bits
+  da:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+	UBRR0L = BRC;// lower 8bits
+  de:	87 e6       	ldi	r24, 0x67	; 103
+  e0:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+	// moved UCSR0B to the using function to save power
+	//UCSR0B = (1 << RXCIE0) | (1 << RXEN0);//  (1 << TXEN0)  | (1 << TXCIE0);// TXEN0 enables transmit of UART 0; TXCIE0 trips the USART_TX_vect interupt when the UDR0 register empties
+	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);// sets up 8 bit data frame
+  e4:	86 e0       	ldi	r24, 0x06	; 6
+  e6:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
+
+	////////////////////////////////////////////////////ADC setup
+    ADCSRA = _BV(ADEN) | _BV(ADPS2);// ADIE is for using interrupts| _BV(ADIE); //Enable ADC and with prescaler=16; page 256 of datasheet
+  ea:	84 e8       	ldi	r24, 0x84	; 132
+  ec:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+	DIDR0 = (1 << ADC0D) | (1 << ADC1D) | (1 << ADC2D);//disables digital input from this pin is not needed to reduce power consumption
+  f0:	87 e0       	ldi	r24, 0x07	; 7
+  f2:	80 93 7e 00 	sts	0x007E, r24	; 0x80007e <__TEXT_REGION_LENGTH__+0x7e007e>
+    //ADMUX |= 1<<REFS0<- moved to where the other admux info is, 0x40 = 0b0100000 gyro ;//| _BV(ADLAR) ;//ASC  multiplexer register: REFS0: where the voltage reference is coming from
+
+	///////////////////////////////////////////Encoder setup
+	PCMSK2 = (1 << PCINT23); // enable interrupt on D7
+  f6:	30 93 6d 00 	sts	0x006D, r19	; 0x80006d <__TEXT_REGION_LENGTH__+0x7e006d>
+	PCMSK0 = (1 << PCINT0); // enable interrupt on B0
+  fa:	20 93 6b 00 	sts	0x006B, r18	; 0x80006b <__TEXT_REGION_LENGTH__+0x7e006b>
+	PCICR = (1 << PCIE2) | (1 << PCIE0);// mask
+  fe:	90 93 68 00 	sts	0x0068, r25	; 0x800068 <__TEXT_REGION_LENGTH__+0x7e0068>
+
+	sei(); //set Global Interrupt Enable	
+ 102:	78 94       	sei
+ 104:	08 95       	ret
+
+00000106 <__vector_3>:
+}
+
+//Interrupt Service Routine for PCINT0/B0
+ISR(PCINT0_vect)
+{
+ 106:	1f 92       	push	r1
+ 108:	0f 92       	push	r0
+ 10a:	0f b6       	in	r0, 0x3f	; 63
+ 10c:	0f 92       	push	r0
+ 10e:	11 24       	eor	r1, r1
+ 110:	8f 93       	push	r24
+ 112:	9f 93       	push	r25
+	rightEncoderAPos++;
+ 114:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 118:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 11c:	01 96       	adiw	r24, 0x01	; 1
+ 11e:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 122:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+}
+ 126:	9f 91       	pop	r25
+ 128:	8f 91       	pop	r24
+ 12a:	0f 90       	pop	r0
+ 12c:	0f be       	out	0x3f, r0	; 63
+ 12e:	0f 90       	pop	r0
+ 130:	1f 90       	pop	r1
+ 132:	18 95       	reti
+
+00000134 <__vector_5>:
+//Interrupt Service Routine for PCINT2/D7
+ISR(PCINT2_vect)
+{
+ 134:	1f 92       	push	r1
+ 136:	0f 92       	push	r0
+ 138:	0f b6       	in	r0, 0x3f	; 63
+ 13a:	0f 92       	push	r0
+ 13c:	11 24       	eor	r1, r1
+ 13e:	8f 93       	push	r24
+ 140:	9f 93       	push	r25
+	rightEncoderAPos++;
+ 142:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 146:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 14a:	01 96       	adiw	r24, 0x01	; 1
+ 14c:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 150:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+}
+ 154:	9f 91       	pop	r25
+ 156:	8f 91       	pop	r24
+ 158:	0f 90       	pop	r0
+ 15a:	0f be       	out	0x3f, r0	; 63
+ 15c:	0f 90       	pop	r0
+ 15e:	1f 90       	pop	r1
+ 160:	18 95       	reti
+
+00000162 <main>:
+#include <util/delay.h>
+ 
+int main(void)
+{ 
+    // Output for an LED
+    DDRD = (1<<PORTD0);
+ 162:	81 e0       	ldi	r24, 0x01	; 1
+ 164:	8a b9       	out	0x0a, r24	; 10
+	RegisterInitialization();
+ 166:	0e 94 48 00 	call	0x90	; 0x90 <_Z22RegisterInitializationv>
+    while(1)
+    {
+		if (rightEncoderAPos > 2900) //2900 one block
+ 16a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 16e:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 172:	85 35       	cpi	r24, 0x55	; 85
+ 174:	9b 40       	sbci	r25, 0x0B	; 11
+ 176:	c8 f3       	brcs	.-14     	; 0x16a <main+0x8>
+			{ 
+				PIND |= (1<<PORTD0);  // Pin changed - toggle an LED on PD0
+ 178:	48 9a       	sbi	0x09, 0	; 9
+				rightEncoderAPos = 0;
+ 17a:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
+ 17e:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+ 182:	f3 cf       	rjmp	.-26     	; 0x16a <main+0x8>
+
+00000184 <_exit>:
+ 184:	f8 94       	cli
+
+00000186 <__stop_program>:
+ 186:	ff cf       	rjmp	.-2      	; 0x186 <__stop_program>

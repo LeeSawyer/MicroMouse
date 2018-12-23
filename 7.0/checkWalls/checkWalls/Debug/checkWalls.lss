@@ -1,0 +1,1002 @@
+
+checkWalls.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000077c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000708  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  00800100  00800100  0000077c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000077c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000007ac  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000100  00000000  00000000  000007ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001e84  00000000  00000000  000008ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000077e  00000000  00000000  00002770  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000b8f  00000000  00000000  00002eee  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000021c  00000000  00000000  00003a80  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000805  00000000  00000000  00003c9c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000014d7  00000000  00000000  000044a1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000f0  00000000  00000000  00005978  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a1 30       	cpi	r26, 0x01	; 1
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 50 01 	call	0x2a0	; 0x2a0 <main>
+  88:	0c 94 82 03 	jmp	0x704	; 0x704 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <_Z22RegisterInitializationv>:
+{
+		//also 0x01 = 0b00000001 = (1 << PORTD0) = (1 << 1) = _BV(1) = 1
+		PORTD &= ~(1 << PORTD0); //port D0,  TX LED
+		return(0);
+
+  90:	87 b1       	in	r24, 0x07	; 7
+  92:	88 61       	ori	r24, 0x18	; 24
+  94:	87 b9       	out	0x07, r24	; 7
+  96:	8a b1       	in	r24, 0x0a	; 10
+  98:	83 60       	ori	r24, 0x03	; 3
+  9a:	8a b9       	out	0x0a, r24	; 10
+  9c:	8a b1       	in	r24, 0x0a	; 10
+  9e:	80 66       	ori	r24, 0x60	; 96
+  a0:	8a b9       	out	0x0a, r24	; 10
+  a2:	83 ea       	ldi	r24, 0xA3	; 163
+  a4:	84 bd       	out	0x24, r24	; 36
+  a6:	85 e0       	ldi	r24, 0x05	; 5
+  a8:	85 bd       	out	0x25, r24	; 37
+  aa:	84 b1       	in	r24, 0x04	; 4
+  ac:	86 60       	ori	r24, 0x06	; 6
+  ae:	84 b9       	out	0x04, r24	; 4
+  b0:	81 ea       	ldi	r24, 0xA1	; 161
+  b2:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
+  b6:	8d e0       	ldi	r24, 0x0D	; 13
+  b8:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7e0081>
+  bc:	e1 eb       	ldi	r30, 0xB1	; 177
+  be:	f0 e0       	ldi	r31, 0x00	; 0
+  c0:	80 81       	ld	r24, Z
+  c2:	87 60       	ori	r24, 0x07	; 7
+  c4:	80 83       	st	Z, r24
+  c6:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+  ca:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+  ce:	87 e6       	ldi	r24, 0x67	; 103
+  d0:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+  d4:	86 e0       	ldi	r24, 0x06	; 6
+  d6:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
+  da:	87 b1       	in	r24, 0x07	; 7
+  dc:	87 7d       	andi	r24, 0xD7	; 215
+  de:	87 b9       	out	0x07, r24	; 7
+  e0:	52 98       	cbi	0x0a, 2	; 10
+  e2:	84 e8       	ldi	r24, 0x84	; 132
+  e4:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+  e8:	87 e0       	ldi	r24, 0x07	; 7
+  ea:	80 93 7e 00 	sts	0x007E, r24	; 0x80007e <__TEXT_REGION_LENGTH__+0x7e007e>
+  ee:	78 94       	sei
+  f0:	08 95       	ret
+
+000000f2 <_Z13diagonalLEDOnv>:
+  f2:	44 9a       	sbi	0x08, 4	; 8
+  f4:	80 e0       	ldi	r24, 0x00	; 0
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+  f8:	08 95       	ret
+
+000000fa <_Z14diagonalLEDOffv>:
+  fa:	44 98       	cbi	0x08, 4	; 8
+  fc:	80 e0       	ldi	r24, 0x00	; 0
+  fe:	90 e0       	ldi	r25, 0x00	; 0
+ 100:	08 95       	ret
+
+00000102 <_Z10frontLEDOnv>:
+ 102:	43 9a       	sbi	0x08, 3	; 8
+ 104:	80 e0       	ldi	r24, 0x00	; 0
+ 106:	90 e0       	ldi	r25, 0x00	; 0
+ 108:	08 95       	ret
+
+0000010a <_Z11frontLEDOffv>:
+ 10a:	43 98       	cbi	0x08, 3	; 8
+ 10c:	80 e0       	ldi	r24, 0x00	; 0
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	08 95       	ret
+
+00000112 <_Z18IRSensorFrontRightv>:
+ 112:	cf 93       	push	r28
+ 114:	df 93       	push	r29
+ 116:	86 e4       	ldi	r24, 0x46	; 70
+ 118:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+ 11c:	ea e7       	ldi	r30, 0x7A	; 122
+ 11e:	f0 e0       	ldi	r31, 0x00	; 0
+ 120:	80 81       	ld	r24, Z
+ 122:	80 64       	ori	r24, 0x40	; 64
+ 124:	80 83       	st	Z, r24
+ 126:	80 81       	ld	r24, Z
+ 128:	86 fd       	sbrc	r24, 6
+ 12a:	fd cf       	rjmp	.-6      	; 0x126 <_Z18IRSensorFrontRightv+0x14>
+ 12c:	ea e7       	ldi	r30, 0x7A	; 122
+ 12e:	f0 e0       	ldi	r31, 0x00	; 0
+ 130:	80 81       	ld	r24, Z
+ 132:	80 64       	ori	r24, 0x40	; 64
+ 134:	80 83       	st	Z, r24
+ 136:	80 81       	ld	r24, Z
+ 138:	86 fd       	sbrc	r24, 6
+ 13a:	fd cf       	rjmp	.-6      	; 0x136 <_Z18IRSensorFrontRightv+0x24>
+ 13c:	c0 91 78 00 	lds	r28, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 140:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 144:	d0 e0       	ldi	r29, 0x00	; 0
+ 146:	d8 2b       	or	r29, r24
+ 148:	0e 94 81 00 	call	0x102	; 0x102 <_Z10frontLEDOnv>
+ 14c:	8f e9       	ldi	r24, 0x9F	; 159
+ 14e:	9f e0       	ldi	r25, 0x0F	; 15
+ 150:	01 97       	sbiw	r24, 0x01	; 1
+ 152:	f1 f7       	brne	.-4      	; 0x150 <_Z18IRSensorFrontRightv+0x3e>
+ 154:	00 c0       	rjmp	.+0      	; 0x156 <_Z18IRSensorFrontRightv+0x44>
+ 156:	00 00       	nop
+ 158:	ea e7       	ldi	r30, 0x7A	; 122
+ 15a:	f0 e0       	ldi	r31, 0x00	; 0
+ 15c:	80 81       	ld	r24, Z
+ 15e:	80 64       	ori	r24, 0x40	; 64
+ 160:	80 83       	st	Z, r24
+ 162:	80 81       	ld	r24, Z
+ 164:	86 fd       	sbrc	r24, 6
+ 166:	fd cf       	rjmp	.-6      	; 0x162 <_Z18IRSensorFrontRightv+0x50>
+ 168:	0e 94 85 00 	call	0x10a	; 0x10a <_Z11frontLEDOffv>
+ 16c:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 170:	20 91 79 00 	lds	r18, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	92 2b       	or	r25, r18
+ 178:	8c 1b       	sub	r24, r28
+ 17a:	9d 0b       	sbc	r25, r29
+ 17c:	df 91       	pop	r29
+ 17e:	cf 91       	pop	r28
+ 180:	08 95       	ret
+
+00000182 <_Z17IRSensorAngleLeftv>:
+ 182:	cf 93       	push	r28
+ 184:	df 93       	push	r29
+ 186:	81 e4       	ldi	r24, 0x41	; 65
+ 188:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+ 18c:	ea e7       	ldi	r30, 0x7A	; 122
+ 18e:	f0 e0       	ldi	r31, 0x00	; 0
+ 190:	80 81       	ld	r24, Z
+ 192:	80 64       	ori	r24, 0x40	; 64
+ 194:	80 83       	st	Z, r24
+ 196:	80 81       	ld	r24, Z
+ 198:	86 fd       	sbrc	r24, 6
+ 19a:	fd cf       	rjmp	.-6      	; 0x196 <_Z17IRSensorAngleLeftv+0x14>
+ 19c:	ea e7       	ldi	r30, 0x7A	; 122
+ 19e:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a0:	80 81       	ld	r24, Z
+ 1a2:	80 64       	ori	r24, 0x40	; 64
+ 1a4:	80 83       	st	Z, r24
+ 1a6:	80 81       	ld	r24, Z
+ 1a8:	86 fd       	sbrc	r24, 6
+ 1aa:	fd cf       	rjmp	.-6      	; 0x1a6 <_Z17IRSensorAngleLeftv+0x24>
+ 1ac:	c0 91 78 00 	lds	r28, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 1b0:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 1b4:	d0 e0       	ldi	r29, 0x00	; 0
+ 1b6:	d8 2b       	or	r29, r24
+ 1b8:	0e 94 79 00 	call	0xf2	; 0xf2 <_Z13diagonalLEDOnv>
+ 1bc:	8f e9       	ldi	r24, 0x9F	; 159
+ 1be:	9f e0       	ldi	r25, 0x0F	; 15
+ 1c0:	01 97       	sbiw	r24, 0x01	; 1
+ 1c2:	f1 f7       	brne	.-4      	; 0x1c0 <_Z17IRSensorAngleLeftv+0x3e>
+ 1c4:	00 c0       	rjmp	.+0      	; 0x1c6 <_Z17IRSensorAngleLeftv+0x44>
+ 1c6:	00 00       	nop
+ 1c8:	ea e7       	ldi	r30, 0x7A	; 122
+ 1ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 1cc:	80 81       	ld	r24, Z
+ 1ce:	80 64       	ori	r24, 0x40	; 64
+ 1d0:	80 83       	st	Z, r24
+ 1d2:	80 81       	ld	r24, Z
+ 1d4:	86 fd       	sbrc	r24, 6
+ 1d6:	fd cf       	rjmp	.-6      	; 0x1d2 <_Z17IRSensorAngleLeftv+0x50>
+ 1d8:	0e 94 7d 00 	call	0xfa	; 0xfa <_Z14diagonalLEDOffv>
+ 1dc:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 1e0:	20 91 79 00 	lds	r18, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 1e4:	90 e0       	ldi	r25, 0x00	; 0
+ 1e6:	92 2b       	or	r25, r18
+ 1e8:	8c 1b       	sub	r24, r28
+ 1ea:	9d 0b       	sbc	r25, r29
+ 1ec:	df 91       	pop	r29
+ 1ee:	cf 91       	pop	r28
+ 1f0:	08 95       	ret
+
+000001f2 <_Z18IRSensorAngleRightv>:
+ 1f2:	cf 93       	push	r28
+ 1f4:	df 93       	push	r29
+ 1f6:	87 e4       	ldi	r24, 0x47	; 71
+ 1f8:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+ 1fc:	ea e7       	ldi	r30, 0x7A	; 122
+ 1fe:	f0 e0       	ldi	r31, 0x00	; 0
+ 200:	80 81       	ld	r24, Z
+ 202:	80 64       	ori	r24, 0x40	; 64
+ 204:	80 83       	st	Z, r24
+ 206:	80 81       	ld	r24, Z
+ 208:	86 fd       	sbrc	r24, 6
+ 20a:	fd cf       	rjmp	.-6      	; 0x206 <_Z18IRSensorAngleRightv+0x14>
+ 20c:	ea e7       	ldi	r30, 0x7A	; 122
+ 20e:	f0 e0       	ldi	r31, 0x00	; 0
+ 210:	80 81       	ld	r24, Z
+ 212:	80 64       	ori	r24, 0x40	; 64
+ 214:	80 83       	st	Z, r24
+ 216:	80 81       	ld	r24, Z
+ 218:	86 fd       	sbrc	r24, 6
+ 21a:	fd cf       	rjmp	.-6      	; 0x216 <_Z18IRSensorAngleRightv+0x24>
+ 21c:	c0 91 78 00 	lds	r28, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 220:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 224:	d0 e0       	ldi	r29, 0x00	; 0
+ 226:	d8 2b       	or	r29, r24
+ 228:	0e 94 79 00 	call	0xf2	; 0xf2 <_Z13diagonalLEDOnv>
+ 22c:	8f e9       	ldi	r24, 0x9F	; 159
+ 22e:	9f e0       	ldi	r25, 0x0F	; 15
+ 230:	01 97       	sbiw	r24, 0x01	; 1
+ 232:	f1 f7       	brne	.-4      	; 0x230 <_Z18IRSensorAngleRightv+0x3e>
+ 234:	00 c0       	rjmp	.+0      	; 0x236 <_Z18IRSensorAngleRightv+0x44>
+ 236:	00 00       	nop
+ 238:	ea e7       	ldi	r30, 0x7A	; 122
+ 23a:	f0 e0       	ldi	r31, 0x00	; 0
+ 23c:	80 81       	ld	r24, Z
+ 23e:	80 64       	ori	r24, 0x40	; 64
+ 240:	80 83       	st	Z, r24
+ 242:	80 81       	ld	r24, Z
+ 244:	86 fd       	sbrc	r24, 6
+ 246:	fd cf       	rjmp	.-6      	; 0x242 <_Z18IRSensorAngleRightv+0x50>
+ 248:	0e 94 7d 00 	call	0xfa	; 0xfa <_Z14diagonalLEDOffv>
+ 24c:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 250:	20 91 79 00 	lds	r18, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 254:	90 e0       	ldi	r25, 0x00	; 0
+ 256:	92 2b       	or	r25, r18
+ 258:	8c 1b       	sub	r24, r28
+ 25a:	9d 0b       	sbc	r25, r29
+ 25c:	df 91       	pop	r29
+ 25e:	cf 91       	pop	r28
+ 260:	08 95       	ret
+
+00000262 <_Z10checkWallsv>:
+ 262:	cf 93       	push	r28
+ 264:	0e 94 c1 00 	call	0x182	; 0x182 <_Z17IRSensorAngleLeftv>
+ 268:	c1 e0       	ldi	r28, 0x01	; 1
+ 26a:	85 36       	cpi	r24, 0x65	; 101
+ 26c:	91 05       	cpc	r25, r1
+ 26e:	08 f4       	brcc	.+2      	; 0x272 <_Z10checkWallsv+0x10>
+ 270:	c0 e0       	ldi	r28, 0x00	; 0
+ 272:	0e 94 89 00 	call	0x112	; 0x112 <_Z18IRSensorFrontRightv>
+ 276:	85 36       	cpi	r24, 0x65	; 101
+ 278:	91 05       	cpc	r25, r1
+ 27a:	08 f0       	brcs	.+2      	; 0x27e <_Z10checkWallsv+0x1c>
+ 27c:	c2 60       	ori	r28, 0x02	; 2
+ 27e:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <_Z18IRSensorAngleRightv>
+ 282:	85 36       	cpi	r24, 0x65	; 101
+ 284:	91 05       	cpc	r25, r1
+ 286:	08 f0       	brcs	.+2      	; 0x28a <_Z10checkWallsv+0x28>
+ 288:	c4 60       	ori	r28, 0x04	; 4
+ 28a:	8c 2f       	mov	r24, r28
+ 28c:	cf 91       	pop	r28
+ 28e:	08 95       	ret
+
+00000290 <_Z7RXLEDOnv>:
+ 290:	59 9a       	sbi	0x0b, 1	; 11
+ 292:	80 e0       	ldi	r24, 0x00	; 0
+ 294:	90 e0       	ldi	r25, 0x00	; 0
+ 296:	08 95       	ret
+
+00000298 <_Z8RXLEDOffv>:
+ 298:	59 98       	cbi	0x0b, 1	; 11
+ 29a:	80 e0       	ldi	r24, 0x00	; 0
+ 29c:	90 e0       	ldi	r25, 0x00	; 0
+ 29e:	08 95       	ret
+
+000002a0 <main>:
+
+#include <util/delay.h>
+
+int main(void)
+{
+	RegisterInitialization();
+ 2a0:	0e 94 48 00 	call	0x90	; 0x90 <_Z22RegisterInitializationv>
+	    while (1) 
+    {
+      currentCellWalls = checkWalls();
+ 2a4:	0e 94 31 01 	call	0x262	; 0x262 <_Z10checkWallsv>
+ 2a8:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+		if (currentCellWalls == 0x07) //all walls
+ 2ac:	87 30       	cpi	r24, 0x07	; 7
+ 2ae:	09 f0       	breq	.+2      	; 0x2b2 <main+0x12>
+ 2b0:	43 c0       	rjmp	.+134    	; 0x338 <main+0x98>
+			{
+			 RXLEDOn();
+ 2b2:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 2b6:	2f ef       	ldi	r18, 0xFF	; 255
+ 2b8:	89 e6       	ldi	r24, 0x69	; 105
+ 2ba:	98 e1       	ldi	r25, 0x18	; 24
+ 2bc:	21 50       	subi	r18, 0x01	; 1
+ 2be:	80 40       	sbci	r24, 0x00	; 0
+ 2c0:	90 40       	sbci	r25, 0x00	; 0
+ 2c2:	e1 f7       	brne	.-8      	; 0x2bc <main+0x1c>
+ 2c4:	00 c0       	rjmp	.+0      	; 0x2c6 <main+0x26>
+ 2c6:	00 00       	nop
+			 _delay_ms(500);
+			 RXLEDOff();
+ 2c8:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 2cc:	2f ef       	ldi	r18, 0xFF	; 255
+ 2ce:	81 ee       	ldi	r24, 0xE1	; 225
+ 2d0:	94 e0       	ldi	r25, 0x04	; 4
+ 2d2:	21 50       	subi	r18, 0x01	; 1
+ 2d4:	80 40       	sbci	r24, 0x00	; 0
+ 2d6:	90 40       	sbci	r25, 0x00	; 0
+ 2d8:	e1 f7       	brne	.-8      	; 0x2d2 <main+0x32>
+ 2da:	00 c0       	rjmp	.+0      	; 0x2dc <main+0x3c>
+ 2dc:	00 00       	nop
+ 			 _delay_ms(100);
+			RXLEDOn();
+ 2de:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 2e2:	2f ef       	ldi	r18, 0xFF	; 255
+ 2e4:	89 e6       	ldi	r24, 0x69	; 105
+ 2e6:	98 e1       	ldi	r25, 0x18	; 24
+ 2e8:	21 50       	subi	r18, 0x01	; 1
+ 2ea:	80 40       	sbci	r24, 0x00	; 0
+ 2ec:	90 40       	sbci	r25, 0x00	; 0
+ 2ee:	e1 f7       	brne	.-8      	; 0x2e8 <main+0x48>
+ 2f0:	00 c0       	rjmp	.+0      	; 0x2f2 <main+0x52>
+ 2f2:	00 00       	nop
+			_delay_ms(500);
+			RXLEDOff();
+ 2f4:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 2f8:	2f ef       	ldi	r18, 0xFF	; 255
+ 2fa:	81 ee       	ldi	r24, 0xE1	; 225
+ 2fc:	94 e0       	ldi	r25, 0x04	; 4
+ 2fe:	21 50       	subi	r18, 0x01	; 1
+ 300:	80 40       	sbci	r24, 0x00	; 0
+ 302:	90 40       	sbci	r25, 0x00	; 0
+ 304:	e1 f7       	brne	.-8      	; 0x2fe <main+0x5e>
+ 306:	00 c0       	rjmp	.+0      	; 0x308 <main+0x68>
+ 308:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 30a:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 30e:	2f ef       	ldi	r18, 0xFF	; 255
+ 310:	89 e6       	ldi	r24, 0x69	; 105
+ 312:	98 e1       	ldi	r25, 0x18	; 24
+ 314:	21 50       	subi	r18, 0x01	; 1
+ 316:	80 40       	sbci	r24, 0x00	; 0
+ 318:	90 40       	sbci	r25, 0x00	; 0
+ 31a:	e1 f7       	brne	.-8      	; 0x314 <main+0x74>
+ 31c:	00 c0       	rjmp	.+0      	; 0x31e <main+0x7e>
+ 31e:	00 00       	nop
+			_delay_ms(500);
+			RXLEDOff();
+ 320:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 324:	2f ef       	ldi	r18, 0xFF	; 255
+ 326:	83 ed       	ldi	r24, 0xD3	; 211
+ 328:	90 e3       	ldi	r25, 0x30	; 48
+ 32a:	21 50       	subi	r18, 0x01	; 1
+ 32c:	80 40       	sbci	r24, 0x00	; 0
+ 32e:	90 40       	sbci	r25, 0x00	; 0
+ 330:	e1 f7       	brne	.-8      	; 0x32a <main+0x8a>
+ 332:	00 c0       	rjmp	.+0      	; 0x334 <main+0x94>
+ 334:	00 00       	nop
+ 336:	b6 cf       	rjmp	.-148    	; 0x2a4 <main+0x4>
+			_delay_ms(1000);
+			}
+		else if (currentCellWalls == 0x06) //front and right walls
+ 338:	86 30       	cpi	r24, 0x06	; 6
+ 33a:	09 f0       	breq	.+2      	; 0x33e <main+0x9e>
+ 33c:	43 c0       	rjmp	.+134    	; 0x3c4 <main+0x124>
+			{
+			 RXLEDOn();
+ 33e:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 342:	2f ef       	ldi	r18, 0xFF	; 255
+ 344:	81 ee       	ldi	r24, 0xE1	; 225
+ 346:	94 e0       	ldi	r25, 0x04	; 4
+ 348:	21 50       	subi	r18, 0x01	; 1
+ 34a:	80 40       	sbci	r24, 0x00	; 0
+ 34c:	90 40       	sbci	r25, 0x00	; 0
+ 34e:	e1 f7       	brne	.-8      	; 0x348 <main+0xa8>
+ 350:	00 c0       	rjmp	.+0      	; 0x352 <main+0xb2>
+ 352:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOff();
+ 354:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 358:	2f ef       	ldi	r18, 0xFF	; 255
+ 35a:	81 ee       	ldi	r24, 0xE1	; 225
+ 35c:	94 e0       	ldi	r25, 0x04	; 4
+ 35e:	21 50       	subi	r18, 0x01	; 1
+ 360:	80 40       	sbci	r24, 0x00	; 0
+ 362:	90 40       	sbci	r25, 0x00	; 0
+ 364:	e1 f7       	brne	.-8      	; 0x35e <main+0xbe>
+ 366:	00 c0       	rjmp	.+0      	; 0x368 <main+0xc8>
+ 368:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOn();
+ 36a:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 36e:	2f ef       	ldi	r18, 0xFF	; 255
+ 370:	89 e6       	ldi	r24, 0x69	; 105
+ 372:	98 e1       	ldi	r25, 0x18	; 24
+ 374:	21 50       	subi	r18, 0x01	; 1
+ 376:	80 40       	sbci	r24, 0x00	; 0
+ 378:	90 40       	sbci	r25, 0x00	; 0
+ 37a:	e1 f7       	brne	.-8      	; 0x374 <main+0xd4>
+ 37c:	00 c0       	rjmp	.+0      	; 0x37e <main+0xde>
+ 37e:	00 00       	nop
+			 _delay_ms(500);
+			 RXLEDOff();
+ 380:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 384:	2f ef       	ldi	r18, 0xFF	; 255
+ 386:	81 ee       	ldi	r24, 0xE1	; 225
+ 388:	94 e0       	ldi	r25, 0x04	; 4
+ 38a:	21 50       	subi	r18, 0x01	; 1
+ 38c:	80 40       	sbci	r24, 0x00	; 0
+ 38e:	90 40       	sbci	r25, 0x00	; 0
+ 390:	e1 f7       	brne	.-8      	; 0x38a <main+0xea>
+ 392:	00 c0       	rjmp	.+0      	; 0x394 <main+0xf4>
+ 394:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOn();
+ 396:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 39a:	2f ef       	ldi	r18, 0xFF	; 255
+ 39c:	89 e6       	ldi	r24, 0x69	; 105
+ 39e:	98 e1       	ldi	r25, 0x18	; 24
+ 3a0:	21 50       	subi	r18, 0x01	; 1
+ 3a2:	80 40       	sbci	r24, 0x00	; 0
+ 3a4:	90 40       	sbci	r25, 0x00	; 0
+ 3a6:	e1 f7       	brne	.-8      	; 0x3a0 <main+0x100>
+ 3a8:	00 c0       	rjmp	.+0      	; 0x3aa <main+0x10a>
+ 3aa:	00 00       	nop
+			 _delay_ms(500);
+			 RXLEDOff();
+ 3ac:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 3b0:	2f ef       	ldi	r18, 0xFF	; 255
+ 3b2:	83 ed       	ldi	r24, 0xD3	; 211
+ 3b4:	90 e3       	ldi	r25, 0x30	; 48
+ 3b6:	21 50       	subi	r18, 0x01	; 1
+ 3b8:	80 40       	sbci	r24, 0x00	; 0
+ 3ba:	90 40       	sbci	r25, 0x00	; 0
+ 3bc:	e1 f7       	brne	.-8      	; 0x3b6 <main+0x116>
+ 3be:	00 c0       	rjmp	.+0      	; 0x3c0 <main+0x120>
+ 3c0:	00 00       	nop
+ 3c2:	70 cf       	rjmp	.-288    	; 0x2a4 <main+0x4>
+			 _delay_ms(1000);			
+			}
+		else if (currentCellWalls == 0x05) //left and right walls
+ 3c4:	85 30       	cpi	r24, 0x05	; 5
+ 3c6:	09 f0       	breq	.+2      	; 0x3ca <main+0x12a>
+ 3c8:	43 c0       	rjmp	.+134    	; 0x450 <__LOCK_REGION_LENGTH__+0x50>
+			{
+			RXLEDOn();
+ 3ca:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 3ce:	2f ef       	ldi	r18, 0xFF	; 255
+ 3d0:	89 e6       	ldi	r24, 0x69	; 105
+ 3d2:	98 e1       	ldi	r25, 0x18	; 24
+ 3d4:	21 50       	subi	r18, 0x01	; 1
+ 3d6:	80 40       	sbci	r24, 0x00	; 0
+ 3d8:	90 40       	sbci	r25, 0x00	; 0
+ 3da:	e1 f7       	brne	.-8      	; 0x3d4 <main+0x134>
+ 3dc:	00 c0       	rjmp	.+0      	; 0x3de <main+0x13e>
+ 3de:	00 00       	nop
+			_delay_ms(500);
+			RXLEDOff();
+ 3e0:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 3e4:	2f ef       	ldi	r18, 0xFF	; 255
+ 3e6:	81 ee       	ldi	r24, 0xE1	; 225
+ 3e8:	94 e0       	ldi	r25, 0x04	; 4
+ 3ea:	21 50       	subi	r18, 0x01	; 1
+ 3ec:	80 40       	sbci	r24, 0x00	; 0
+ 3ee:	90 40       	sbci	r25, 0x00	; 0
+ 3f0:	e1 f7       	brne	.-8      	; 0x3ea <main+0x14a>
+ 3f2:	00 c0       	rjmp	.+0      	; 0x3f4 <main+0x154>
+ 3f4:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 3f6:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 3fa:	2f ef       	ldi	r18, 0xFF	; 255
+ 3fc:	81 ee       	ldi	r24, 0xE1	; 225
+ 3fe:	94 e0       	ldi	r25, 0x04	; 4
+ 400:	21 50       	subi	r18, 0x01	; 1
+ 402:	80 40       	sbci	r24, 0x00	; 0
+ 404:	90 40       	sbci	r25, 0x00	; 0
+ 406:	e1 f7       	brne	.-8      	; 0x400 <__LOCK_REGION_LENGTH__>
+ 408:	00 c0       	rjmp	.+0      	; 0x40a <__LOCK_REGION_LENGTH__+0xa>
+ 40a:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 40c:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 410:	2f ef       	ldi	r18, 0xFF	; 255
+ 412:	81 ee       	ldi	r24, 0xE1	; 225
+ 414:	94 e0       	ldi	r25, 0x04	; 4
+ 416:	21 50       	subi	r18, 0x01	; 1
+ 418:	80 40       	sbci	r24, 0x00	; 0
+ 41a:	90 40       	sbci	r25, 0x00	; 0
+ 41c:	e1 f7       	brne	.-8      	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+ 41e:	00 c0       	rjmp	.+0      	; 0x420 <__LOCK_REGION_LENGTH__+0x20>
+ 420:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 422:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 426:	2f ef       	ldi	r18, 0xFF	; 255
+ 428:	89 e6       	ldi	r24, 0x69	; 105
+ 42a:	98 e1       	ldi	r25, 0x18	; 24
+ 42c:	21 50       	subi	r18, 0x01	; 1
+ 42e:	80 40       	sbci	r24, 0x00	; 0
+ 430:	90 40       	sbci	r25, 0x00	; 0
+ 432:	e1 f7       	brne	.-8      	; 0x42c <__LOCK_REGION_LENGTH__+0x2c>
+ 434:	00 c0       	rjmp	.+0      	; 0x436 <__LOCK_REGION_LENGTH__+0x36>
+ 436:	00 00       	nop
+			_delay_ms(500);
+			RXLEDOff();
+ 438:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 43c:	2f ef       	ldi	r18, 0xFF	; 255
+ 43e:	83 ed       	ldi	r24, 0xD3	; 211
+ 440:	90 e3       	ldi	r25, 0x30	; 48
+ 442:	21 50       	subi	r18, 0x01	; 1
+ 444:	80 40       	sbci	r24, 0x00	; 0
+ 446:	90 40       	sbci	r25, 0x00	; 0
+ 448:	e1 f7       	brne	.-8      	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
+ 44a:	00 c0       	rjmp	.+0      	; 0x44c <__LOCK_REGION_LENGTH__+0x4c>
+ 44c:	00 00       	nop
+ 44e:	2a cf       	rjmp	.-428    	; 0x2a4 <main+0x4>
+			 RXLEDOn();
+			 _delay_ms(100);
+			 RXLEDOff();
+			 _delay_ms(1000);			
+			}
+		else if (currentCellWalls == 0x04) //right wall
+ 450:	84 30       	cpi	r24, 0x04	; 4
+ 452:	09 f0       	breq	.+2      	; 0x456 <__LOCK_REGION_LENGTH__+0x56>
+ 454:	43 c0       	rjmp	.+134    	; 0x4dc <__LOCK_REGION_LENGTH__+0xdc>
+			{
+			 RXLEDOn();
+ 456:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 45a:	2f ef       	ldi	r18, 0xFF	; 255
+ 45c:	81 ee       	ldi	r24, 0xE1	; 225
+ 45e:	94 e0       	ldi	r25, 0x04	; 4
+ 460:	21 50       	subi	r18, 0x01	; 1
+ 462:	80 40       	sbci	r24, 0x00	; 0
+ 464:	90 40       	sbci	r25, 0x00	; 0
+ 466:	e1 f7       	brne	.-8      	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
+ 468:	00 c0       	rjmp	.+0      	; 0x46a <__LOCK_REGION_LENGTH__+0x6a>
+ 46a:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOff();
+ 46c:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 470:	2f ef       	ldi	r18, 0xFF	; 255
+ 472:	81 ee       	ldi	r24, 0xE1	; 225
+ 474:	94 e0       	ldi	r25, 0x04	; 4
+ 476:	21 50       	subi	r18, 0x01	; 1
+ 478:	80 40       	sbci	r24, 0x00	; 0
+ 47a:	90 40       	sbci	r25, 0x00	; 0
+ 47c:	e1 f7       	brne	.-8      	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 47e:	00 c0       	rjmp	.+0      	; 0x480 <__LOCK_REGION_LENGTH__+0x80>
+ 480:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOn();
+ 482:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 486:	2f ef       	ldi	r18, 0xFF	; 255
+ 488:	81 ee       	ldi	r24, 0xE1	; 225
+ 48a:	94 e0       	ldi	r25, 0x04	; 4
+ 48c:	21 50       	subi	r18, 0x01	; 1
+ 48e:	80 40       	sbci	r24, 0x00	; 0
+ 490:	90 40       	sbci	r25, 0x00	; 0
+ 492:	e1 f7       	brne	.-8      	; 0x48c <__LOCK_REGION_LENGTH__+0x8c>
+ 494:	00 c0       	rjmp	.+0      	; 0x496 <__LOCK_REGION_LENGTH__+0x96>
+ 496:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOff();
+ 498:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 49c:	2f ef       	ldi	r18, 0xFF	; 255
+ 49e:	81 ee       	ldi	r24, 0xE1	; 225
+ 4a0:	94 e0       	ldi	r25, 0x04	; 4
+ 4a2:	21 50       	subi	r18, 0x01	; 1
+ 4a4:	80 40       	sbci	r24, 0x00	; 0
+ 4a6:	90 40       	sbci	r25, 0x00	; 0
+ 4a8:	e1 f7       	brne	.-8      	; 0x4a2 <__LOCK_REGION_LENGTH__+0xa2>
+ 4aa:	00 c0       	rjmp	.+0      	; 0x4ac <__LOCK_REGION_LENGTH__+0xac>
+ 4ac:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOn();
+ 4ae:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 4b2:	2f ef       	ldi	r18, 0xFF	; 255
+ 4b4:	89 e6       	ldi	r24, 0x69	; 105
+ 4b6:	98 e1       	ldi	r25, 0x18	; 24
+ 4b8:	21 50       	subi	r18, 0x01	; 1
+ 4ba:	80 40       	sbci	r24, 0x00	; 0
+ 4bc:	90 40       	sbci	r25, 0x00	; 0
+ 4be:	e1 f7       	brne	.-8      	; 0x4b8 <__LOCK_REGION_LENGTH__+0xb8>
+ 4c0:	00 c0       	rjmp	.+0      	; 0x4c2 <__LOCK_REGION_LENGTH__+0xc2>
+ 4c2:	00 00       	nop
+			 _delay_ms(500);
+			 RXLEDOff();
+ 4c4:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 4c8:	2f ef       	ldi	r18, 0xFF	; 255
+ 4ca:	83 ed       	ldi	r24, 0xD3	; 211
+ 4cc:	90 e3       	ldi	r25, 0x30	; 48
+ 4ce:	21 50       	subi	r18, 0x01	; 1
+ 4d0:	80 40       	sbci	r24, 0x00	; 0
+ 4d2:	90 40       	sbci	r25, 0x00	; 0
+ 4d4:	e1 f7       	brne	.-8      	; 0x4ce <__LOCK_REGION_LENGTH__+0xce>
+ 4d6:	00 c0       	rjmp	.+0      	; 0x4d8 <__LOCK_REGION_LENGTH__+0xd8>
+ 4d8:	00 00       	nop
+ 4da:	e4 ce       	rjmp	.-568    	; 0x2a4 <main+0x4>
+			 _delay_ms(1000);			
+			}
+		else if (currentCellWalls == 0x01) //left walls
+ 4dc:	81 30       	cpi	r24, 0x01	; 1
+ 4de:	09 f0       	breq	.+2      	; 0x4e2 <__LOCK_REGION_LENGTH__+0xe2>
+ 4e0:	43 c0       	rjmp	.+134    	; 0x568 <__LOCK_REGION_LENGTH__+0x168>
+			{
+			 RXLEDOn();
+ 4e2:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 4e6:	2f ef       	ldi	r18, 0xFF	; 255
+ 4e8:	89 e6       	ldi	r24, 0x69	; 105
+ 4ea:	98 e1       	ldi	r25, 0x18	; 24
+ 4ec:	21 50       	subi	r18, 0x01	; 1
+ 4ee:	80 40       	sbci	r24, 0x00	; 0
+ 4f0:	90 40       	sbci	r25, 0x00	; 0
+ 4f2:	e1 f7       	brne	.-8      	; 0x4ec <__LOCK_REGION_LENGTH__+0xec>
+ 4f4:	00 c0       	rjmp	.+0      	; 0x4f6 <__LOCK_REGION_LENGTH__+0xf6>
+ 4f6:	00 00       	nop
+			 _delay_ms(500);
+			 RXLEDOff();
+ 4f8:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 4fc:	2f ef       	ldi	r18, 0xFF	; 255
+ 4fe:	81 ee       	ldi	r24, 0xE1	; 225
+ 500:	94 e0       	ldi	r25, 0x04	; 4
+ 502:	21 50       	subi	r18, 0x01	; 1
+ 504:	80 40       	sbci	r24, 0x00	; 0
+ 506:	90 40       	sbci	r25, 0x00	; 0
+ 508:	e1 f7       	brne	.-8      	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+ 50a:	00 c0       	rjmp	.+0      	; 0x50c <__LOCK_REGION_LENGTH__+0x10c>
+ 50c:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOn();
+ 50e:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 512:	2f ef       	ldi	r18, 0xFF	; 255
+ 514:	81 ee       	ldi	r24, 0xE1	; 225
+ 516:	94 e0       	ldi	r25, 0x04	; 4
+ 518:	21 50       	subi	r18, 0x01	; 1
+ 51a:	80 40       	sbci	r24, 0x00	; 0
+ 51c:	90 40       	sbci	r25, 0x00	; 0
+ 51e:	e1 f7       	brne	.-8      	; 0x518 <__LOCK_REGION_LENGTH__+0x118>
+ 520:	00 c0       	rjmp	.+0      	; 0x522 <__LOCK_REGION_LENGTH__+0x122>
+ 522:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOff();
+ 524:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 528:	2f ef       	ldi	r18, 0xFF	; 255
+ 52a:	81 ee       	ldi	r24, 0xE1	; 225
+ 52c:	94 e0       	ldi	r25, 0x04	; 4
+ 52e:	21 50       	subi	r18, 0x01	; 1
+ 530:	80 40       	sbci	r24, 0x00	; 0
+ 532:	90 40       	sbci	r25, 0x00	; 0
+ 534:	e1 f7       	brne	.-8      	; 0x52e <__LOCK_REGION_LENGTH__+0x12e>
+ 536:	00 c0       	rjmp	.+0      	; 0x538 <__LOCK_REGION_LENGTH__+0x138>
+ 538:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOn();
+ 53a:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 53e:	2f ef       	ldi	r18, 0xFF	; 255
+ 540:	81 ee       	ldi	r24, 0xE1	; 225
+ 542:	94 e0       	ldi	r25, 0x04	; 4
+ 544:	21 50       	subi	r18, 0x01	; 1
+ 546:	80 40       	sbci	r24, 0x00	; 0
+ 548:	90 40       	sbci	r25, 0x00	; 0
+ 54a:	e1 f7       	brne	.-8      	; 0x544 <__LOCK_REGION_LENGTH__+0x144>
+ 54c:	00 c0       	rjmp	.+0      	; 0x54e <__LOCK_REGION_LENGTH__+0x14e>
+ 54e:	00 00       	nop
+			 _delay_ms(100);
+			 RXLEDOff();
+ 550:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 554:	2f ef       	ldi	r18, 0xFF	; 255
+ 556:	83 ed       	ldi	r24, 0xD3	; 211
+ 558:	90 e3       	ldi	r25, 0x30	; 48
+ 55a:	21 50       	subi	r18, 0x01	; 1
+ 55c:	80 40       	sbci	r24, 0x00	; 0
+ 55e:	90 40       	sbci	r25, 0x00	; 0
+ 560:	e1 f7       	brne	.-8      	; 0x55a <__LOCK_REGION_LENGTH__+0x15a>
+ 562:	00 c0       	rjmp	.+0      	; 0x564 <__LOCK_REGION_LENGTH__+0x164>
+ 564:	00 00       	nop
+ 566:	9e ce       	rjmp	.-708    	; 0x2a4 <main+0x4>
+			 _delay_ms(1000);			
+			}
+		else if (currentCellWalls == 0x02) //front walls
+ 568:	82 30       	cpi	r24, 0x02	; 2
+ 56a:	09 f0       	breq	.+2      	; 0x56e <__LOCK_REGION_LENGTH__+0x16e>
+ 56c:	43 c0       	rjmp	.+134    	; 0x5f4 <__LOCK_REGION_LENGTH__+0x1f4>
+		{
+			RXLEDOn();
+ 56e:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 572:	2f ef       	ldi	r18, 0xFF	; 255
+ 574:	81 ee       	ldi	r24, 0xE1	; 225
+ 576:	94 e0       	ldi	r25, 0x04	; 4
+ 578:	21 50       	subi	r18, 0x01	; 1
+ 57a:	80 40       	sbci	r24, 0x00	; 0
+ 57c:	90 40       	sbci	r25, 0x00	; 0
+ 57e:	e1 f7       	brne	.-8      	; 0x578 <__LOCK_REGION_LENGTH__+0x178>
+ 580:	00 c0       	rjmp	.+0      	; 0x582 <__LOCK_REGION_LENGTH__+0x182>
+ 582:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 584:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 588:	2f ef       	ldi	r18, 0xFF	; 255
+ 58a:	81 ee       	ldi	r24, 0xE1	; 225
+ 58c:	94 e0       	ldi	r25, 0x04	; 4
+ 58e:	21 50       	subi	r18, 0x01	; 1
+ 590:	80 40       	sbci	r24, 0x00	; 0
+ 592:	90 40       	sbci	r25, 0x00	; 0
+ 594:	e1 f7       	brne	.-8      	; 0x58e <__LOCK_REGION_LENGTH__+0x18e>
+ 596:	00 c0       	rjmp	.+0      	; 0x598 <__LOCK_REGION_LENGTH__+0x198>
+ 598:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 59a:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 59e:	2f ef       	ldi	r18, 0xFF	; 255
+ 5a0:	89 e6       	ldi	r24, 0x69	; 105
+ 5a2:	98 e1       	ldi	r25, 0x18	; 24
+ 5a4:	21 50       	subi	r18, 0x01	; 1
+ 5a6:	80 40       	sbci	r24, 0x00	; 0
+ 5a8:	90 40       	sbci	r25, 0x00	; 0
+ 5aa:	e1 f7       	brne	.-8      	; 0x5a4 <__LOCK_REGION_LENGTH__+0x1a4>
+ 5ac:	00 c0       	rjmp	.+0      	; 0x5ae <__LOCK_REGION_LENGTH__+0x1ae>
+ 5ae:	00 00       	nop
+			_delay_ms(500);
+			RXLEDOff();
+ 5b0:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 5b4:	2f ef       	ldi	r18, 0xFF	; 255
+ 5b6:	81 ee       	ldi	r24, 0xE1	; 225
+ 5b8:	94 e0       	ldi	r25, 0x04	; 4
+ 5ba:	21 50       	subi	r18, 0x01	; 1
+ 5bc:	80 40       	sbci	r24, 0x00	; 0
+ 5be:	90 40       	sbci	r25, 0x00	; 0
+ 5c0:	e1 f7       	brne	.-8      	; 0x5ba <__LOCK_REGION_LENGTH__+0x1ba>
+ 5c2:	00 c0       	rjmp	.+0      	; 0x5c4 <__LOCK_REGION_LENGTH__+0x1c4>
+ 5c4:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 5c6:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 5ca:	2f ef       	ldi	r18, 0xFF	; 255
+ 5cc:	81 ee       	ldi	r24, 0xE1	; 225
+ 5ce:	94 e0       	ldi	r25, 0x04	; 4
+ 5d0:	21 50       	subi	r18, 0x01	; 1
+ 5d2:	80 40       	sbci	r24, 0x00	; 0
+ 5d4:	90 40       	sbci	r25, 0x00	; 0
+ 5d6:	e1 f7       	brne	.-8      	; 0x5d0 <__LOCK_REGION_LENGTH__+0x1d0>
+ 5d8:	00 c0       	rjmp	.+0      	; 0x5da <__LOCK_REGION_LENGTH__+0x1da>
+ 5da:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 5dc:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 5e0:	2f ef       	ldi	r18, 0xFF	; 255
+ 5e2:	83 ed       	ldi	r24, 0xD3	; 211
+ 5e4:	90 e3       	ldi	r25, 0x30	; 48
+ 5e6:	21 50       	subi	r18, 0x01	; 1
+ 5e8:	80 40       	sbci	r24, 0x00	; 0
+ 5ea:	90 40       	sbci	r25, 0x00	; 0
+ 5ec:	e1 f7       	brne	.-8      	; 0x5e6 <__LOCK_REGION_LENGTH__+0x1e6>
+ 5ee:	00 c0       	rjmp	.+0      	; 0x5f0 <__LOCK_REGION_LENGTH__+0x1f0>
+ 5f0:	00 00       	nop
+ 5f2:	58 ce       	rjmp	.-848    	; 0x2a4 <main+0x4>
+			_delay_ms(1000);
+		}
+		else if (currentCellWalls == 0x00) //no walls
+ 5f4:	81 11       	cpse	r24, r1
+ 5f6:	43 c0       	rjmp	.+134    	; 0x67e <__LOCK_REGION_LENGTH__+0x27e>
+		{
+			RXLEDOn();
+ 5f8:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 5fc:	2f ef       	ldi	r18, 0xFF	; 255
+ 5fe:	81 ee       	ldi	r24, 0xE1	; 225
+ 600:	94 e0       	ldi	r25, 0x04	; 4
+ 602:	21 50       	subi	r18, 0x01	; 1
+ 604:	80 40       	sbci	r24, 0x00	; 0
+ 606:	90 40       	sbci	r25, 0x00	; 0
+ 608:	e1 f7       	brne	.-8      	; 0x602 <__LOCK_REGION_LENGTH__+0x202>
+ 60a:	00 c0       	rjmp	.+0      	; 0x60c <__LOCK_REGION_LENGTH__+0x20c>
+ 60c:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 60e:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 612:	2f ef       	ldi	r18, 0xFF	; 255
+ 614:	81 ee       	ldi	r24, 0xE1	; 225
+ 616:	94 e0       	ldi	r25, 0x04	; 4
+ 618:	21 50       	subi	r18, 0x01	; 1
+ 61a:	80 40       	sbci	r24, 0x00	; 0
+ 61c:	90 40       	sbci	r25, 0x00	; 0
+ 61e:	e1 f7       	brne	.-8      	; 0x618 <__LOCK_REGION_LENGTH__+0x218>
+ 620:	00 c0       	rjmp	.+0      	; 0x622 <__LOCK_REGION_LENGTH__+0x222>
+ 622:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 624:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 628:	2f ef       	ldi	r18, 0xFF	; 255
+ 62a:	81 ee       	ldi	r24, 0xE1	; 225
+ 62c:	94 e0       	ldi	r25, 0x04	; 4
+ 62e:	21 50       	subi	r18, 0x01	; 1
+ 630:	80 40       	sbci	r24, 0x00	; 0
+ 632:	90 40       	sbci	r25, 0x00	; 0
+ 634:	e1 f7       	brne	.-8      	; 0x62e <__LOCK_REGION_LENGTH__+0x22e>
+ 636:	00 c0       	rjmp	.+0      	; 0x638 <__LOCK_REGION_LENGTH__+0x238>
+ 638:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 63a:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 63e:	2f ef       	ldi	r18, 0xFF	; 255
+ 640:	81 ee       	ldi	r24, 0xE1	; 225
+ 642:	94 e0       	ldi	r25, 0x04	; 4
+ 644:	21 50       	subi	r18, 0x01	; 1
+ 646:	80 40       	sbci	r24, 0x00	; 0
+ 648:	90 40       	sbci	r25, 0x00	; 0
+ 64a:	e1 f7       	brne	.-8      	; 0x644 <__LOCK_REGION_LENGTH__+0x244>
+ 64c:	00 c0       	rjmp	.+0      	; 0x64e <__LOCK_REGION_LENGTH__+0x24e>
+ 64e:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 650:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 654:	2f ef       	ldi	r18, 0xFF	; 255
+ 656:	81 ee       	ldi	r24, 0xE1	; 225
+ 658:	94 e0       	ldi	r25, 0x04	; 4
+ 65a:	21 50       	subi	r18, 0x01	; 1
+ 65c:	80 40       	sbci	r24, 0x00	; 0
+ 65e:	90 40       	sbci	r25, 0x00	; 0
+ 660:	e1 f7       	brne	.-8      	; 0x65a <__LOCK_REGION_LENGTH__+0x25a>
+ 662:	00 c0       	rjmp	.+0      	; 0x664 <__LOCK_REGION_LENGTH__+0x264>
+ 664:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 666:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 66a:	2f ef       	ldi	r18, 0xFF	; 255
+ 66c:	83 ed       	ldi	r24, 0xD3	; 211
+ 66e:	90 e3       	ldi	r25, 0x30	; 48
+ 670:	21 50       	subi	r18, 0x01	; 1
+ 672:	80 40       	sbci	r24, 0x00	; 0
+ 674:	90 40       	sbci	r25, 0x00	; 0
+ 676:	e1 f7       	brne	.-8      	; 0x670 <__LOCK_REGION_LENGTH__+0x270>
+ 678:	00 c0       	rjmp	.+0      	; 0x67a <__LOCK_REGION_LENGTH__+0x27a>
+ 67a:	00 00       	nop
+ 67c:	13 ce       	rjmp	.-986    	; 0x2a4 <main+0x4>
+			_delay_ms(1000);
+		}
+		else 
+		{
+			RXLEDOn();
+ 67e:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 682:	2f ef       	ldi	r18, 0xFF	; 255
+ 684:	81 ee       	ldi	r24, 0xE1	; 225
+ 686:	94 e0       	ldi	r25, 0x04	; 4
+ 688:	21 50       	subi	r18, 0x01	; 1
+ 68a:	80 40       	sbci	r24, 0x00	; 0
+ 68c:	90 40       	sbci	r25, 0x00	; 0
+ 68e:	e1 f7       	brne	.-8      	; 0x688 <__LOCK_REGION_LENGTH__+0x288>
+ 690:	00 c0       	rjmp	.+0      	; 0x692 <__LOCK_REGION_LENGTH__+0x292>
+ 692:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 694:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 698:	2f ef       	ldi	r18, 0xFF	; 255
+ 69a:	81 ee       	ldi	r24, 0xE1	; 225
+ 69c:	94 e0       	ldi	r25, 0x04	; 4
+ 69e:	21 50       	subi	r18, 0x01	; 1
+ 6a0:	80 40       	sbci	r24, 0x00	; 0
+ 6a2:	90 40       	sbci	r25, 0x00	; 0
+ 6a4:	e1 f7       	brne	.-8      	; 0x69e <__LOCK_REGION_LENGTH__+0x29e>
+ 6a6:	00 c0       	rjmp	.+0      	; 0x6a8 <__LOCK_REGION_LENGTH__+0x2a8>
+ 6a8:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 6aa:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 6ae:	2f ef       	ldi	r18, 0xFF	; 255
+ 6b0:	81 ee       	ldi	r24, 0xE1	; 225
+ 6b2:	94 e0       	ldi	r25, 0x04	; 4
+ 6b4:	21 50       	subi	r18, 0x01	; 1
+ 6b6:	80 40       	sbci	r24, 0x00	; 0
+ 6b8:	90 40       	sbci	r25, 0x00	; 0
+ 6ba:	e1 f7       	brne	.-8      	; 0x6b4 <__LOCK_REGION_LENGTH__+0x2b4>
+ 6bc:	00 c0       	rjmp	.+0      	; 0x6be <__LOCK_REGION_LENGTH__+0x2be>
+ 6be:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 6c0:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 6c4:	2f ef       	ldi	r18, 0xFF	; 255
+ 6c6:	81 ee       	ldi	r24, 0xE1	; 225
+ 6c8:	94 e0       	ldi	r25, 0x04	; 4
+ 6ca:	21 50       	subi	r18, 0x01	; 1
+ 6cc:	80 40       	sbci	r24, 0x00	; 0
+ 6ce:	90 40       	sbci	r25, 0x00	; 0
+ 6d0:	e1 f7       	brne	.-8      	; 0x6ca <__LOCK_REGION_LENGTH__+0x2ca>
+ 6d2:	00 c0       	rjmp	.+0      	; 0x6d4 <__LOCK_REGION_LENGTH__+0x2d4>
+ 6d4:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOn();
+ 6d6:	0e 94 48 01 	call	0x290	; 0x290 <_Z7RXLEDOnv>
+ 6da:	2f ef       	ldi	r18, 0xFF	; 255
+ 6dc:	81 ee       	ldi	r24, 0xE1	; 225
+ 6de:	94 e0       	ldi	r25, 0x04	; 4
+ 6e0:	21 50       	subi	r18, 0x01	; 1
+ 6e2:	80 40       	sbci	r24, 0x00	; 0
+ 6e4:	90 40       	sbci	r25, 0x00	; 0
+ 6e6:	e1 f7       	brne	.-8      	; 0x6e0 <__LOCK_REGION_LENGTH__+0x2e0>
+ 6e8:	00 c0       	rjmp	.+0      	; 0x6ea <__LOCK_REGION_LENGTH__+0x2ea>
+ 6ea:	00 00       	nop
+			_delay_ms(100);
+			RXLEDOff();
+ 6ec:	0e 94 4c 01 	call	0x298	; 0x298 <_Z8RXLEDOffv>
+ 6f0:	2f ef       	ldi	r18, 0xFF	; 255
+ 6f2:	81 ee       	ldi	r24, 0xE1	; 225
+ 6f4:	94 e0       	ldi	r25, 0x04	; 4
+ 6f6:	21 50       	subi	r18, 0x01	; 1
+ 6f8:	80 40       	sbci	r24, 0x00	; 0
+ 6fa:	90 40       	sbci	r25, 0x00	; 0
+ 6fc:	e1 f7       	brne	.-8      	; 0x6f6 <__LOCK_REGION_LENGTH__+0x2f6>
+ 6fe:	00 c0       	rjmp	.+0      	; 0x700 <__LOCK_REGION_LENGTH__+0x300>
+ 700:	00 00       	nop
+ 702:	d0 cd       	rjmp	.-1120   	; 0x2a4 <main+0x4>
+
+00000704 <_exit>:
+ 704:	f8 94       	cli
+
+00000706 <__stop_program>:
+ 706:	ff cf       	rjmp	.-2      	; 0x706 <__stop_program>
